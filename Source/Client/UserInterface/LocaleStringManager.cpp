@@ -49,8 +49,7 @@ UINT LocaleStringManager::GetFormatSpecifierSize(int type)
 
 int LocaleStringManager::GetFormatSpecifierStringSize(int type)
 {
-	std::string specifierString(FormatTable[type].szName);
-	return specifierString.size();
+	return strlen(FormatTable[type].szName);
 }
 
 void LocaleStringManager::LocateFormatSpecifier(const char* c_szFormat, size_t iSize, int& iSpecifierType, int& iEndPos)
