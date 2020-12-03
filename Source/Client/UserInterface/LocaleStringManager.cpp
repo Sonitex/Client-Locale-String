@@ -47,17 +47,6 @@ UINT LocaleStringManager::GetFormatSpecifierSize(int type)
 	return FormatTable[type].iSize;
 }
 
-UINT LocaleStringManager::GetFormatSpecifierSize(int type)
-{
-	for (const auto& format : FormatTable)
-	{
-		if (format.iType == type)
-			return format.iSize;
-	}
-
-	return -1;
-}
-
 int LocaleStringManager::GetFormatSpecifierStringSize(int type)
 {
 	std::string specifierString(FormatTable[type].szName);
