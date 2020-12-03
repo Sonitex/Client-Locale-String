@@ -42,16 +42,9 @@ bool LocaleStringManager::IsFormatSpecifier(const char* specifier)
 	return false;
 }
 
-int	LocaleStringManager::GetFormatSpecifierType(const char* specifier)
+UINT LocaleStringManager::GetFormatSpecifierSize(int type)
 {
-	for (const auto& format : FormatTable)
-	{
-		int result = strcmp(format.szName, specifier);
-		if (result == 0)
-			return format.iType;
-	}
-
-	return -1;
+	return FormatTable[type].iSize;
 }
 
 UINT LocaleStringManager::GetFormatSpecifierSize(int type)
