@@ -15,17 +15,17 @@ LocaleStringManager::~LocaleStringManager()
 
 LocaleStringManager::TFormat LocaleStringManager::FormatTable[FORMAT_TYPE_MAX_NUM] =
 {
-	{FORMAT_TYPE_INT,				"d",		sizeof(int) },
+	{FORMAT_TYPE_INT,			"d",		sizeof(int) },
 	{FORMAT_TYPE_UNSIGNED_INT,		"u",		sizeof(unsigned int) },
 	{FORMAT_TYPE_SHORT_INT,			"h",		sizeof(short int) },
 	{FORMAT_TYPE_SIGNED_CHAR,		"hh",		sizeof(signed char) },
 
-	{FORMAT_TYPE_LONG,				"l",		sizeof(long) },
+	{FORMAT_TYPE_LONG,			"l",		sizeof(long) },
 	{FORMAT_TYPE_UNSIGNED_LONG,		"lu",		sizeof(unsigned long) },
 	{FORMAT_TYPE_LONG_INT,			"ld",		sizeof(long int) },
 	{FORMAT_TYPE_LONG_LONG_INT,		"lld",		sizeof(long long int) },
 
-	{FORMAT_TYPE_FLOAT,				"f",		STRING_SIZE },
+	{FORMAT_TYPE_FLOAT,			"f",		STRING_SIZE },
 
 	{FORMAT_TYPE_STRING,			"s",		STRING_SIZE },
 };
@@ -40,6 +40,18 @@ bool LocaleStringManager::IsFormatSpecifier(const char* specifier)
 	}
 
 	return false;
+}
+
+int LocaleStringManager::GetFormatSpecifierType(const char* specifier)
+{
+	for (const auto& format : FormatTable)
+	{
+		int result = strcmp(format.szName, specifier);
+		if (result == 0)
+			return format.iType;
+	}
+
+	return -1;
 }
 
 UINT LocaleStringManager::GetFormatSpecifierSize(int type)
